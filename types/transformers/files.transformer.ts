@@ -1,12 +1,16 @@
 import {
+  FileResponse,
+  FileResponseDTO,
+  FilesCreateRequest,
+  FilesCreateRequestDTO,
+  FilesCreateResponse,
+  FilesCreateResponseDTO,
   FilesListResponse,
   FilesListResponseDTO,
-  FileResponseDTO,
-  FileResponse,
-  FilesCreateRequestDTO,
-  FilesCreateRequest,
-  FilesCreateResponseDTO,
-  FilesCreateResponse,
+  ReadFileResponse,
+  ReadFileResponseDTO,
+  UpdateFileRequest,
+  UpdateFileRequestDTO,
 } from "../interface/files.interface";
 
 export const filesResponseTransformer = (
@@ -37,10 +41,10 @@ export const filesCreateRequestTransformer = (
   request: FilesCreateRequest,
 ): FilesCreateRequestDTO => {
   return {
-    name: request.name,
+    // name: request.name,
     file_type: request.fileType,
     tags: request.tags,
-    source: request.file,
+    source: request.source,
   };
 };
 
@@ -58,3 +62,31 @@ export const filesCreateResponseTransformer = (
     tags: DTO.tags,
   };
 };
+
+export const readFileResponseTransformer = (
+  DTO: ReadFileResponseDTO,
+): ReadFileResponse => {
+  return {
+    id: DTO.id,
+    name: DTO.name,
+    length: DTO.length,
+    size: DTO.size,
+    fileType: DTO.file_type,
+    tags: DTO.tags,
+    hash: {
+      md5: DTO.hash.md5,
+      concatHash: DTO.hash.concat_hash,
+      sha256: DTO.hash.sha256,
+    },
+  };
+};
+
+
+export const fileUpdateRequestTransformer = (
+  request: UpdateFileRequest,
+): UpdateFileRequestDTO => {
+  return {
+    file_type: request.fileType,
+    tags: request.tags,
+  };
+}

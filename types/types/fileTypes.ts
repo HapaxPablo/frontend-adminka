@@ -19,8 +19,11 @@ type Types = {
   [key: number]: string;
 };
 
-export function convertType(typeId: number): string {
-  // Проверяем, существует ли ключ в объекте types
+export function convertType(typeId: number | undefined): string {
+  if (typeId === undefined) {
+    return "Undefined Type";
+  }
+
   if (typeId in types) {
     return types[typeId];
   } else {

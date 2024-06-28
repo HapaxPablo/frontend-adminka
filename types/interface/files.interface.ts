@@ -31,17 +31,17 @@ export type FilesListResponse = {
 };
 
 export type FilesCreateRequestDTO = {
-  name: string;
+  // name: string;
   file_type: number;
-  tags: string[];
-  source?: File;
+  tags: number[];
+  source: string;
 };
 
 export type FilesCreateRequest = {
-  name: string;
+  // name: string;
   fileType: number;
-  tags: string[];
-  file?: File; // новое поле для файла
+  tags: number[];
+  source: string; // новое поле для файла
 };
 
 export type FilesCreateResponseDTO = {
@@ -73,3 +73,41 @@ export type TagsCreateResponse = {
   id: string;
   name: string;
 };
+
+export type ReadFileResponseDTO = {
+  id: string;
+  name: string;
+  length: string;
+  size: number;
+  file_type: number;
+  tags: string[];
+  hash: {
+    md5: string;
+    sha256: string;
+    concat_hash: string;
+  }
+};
+
+export type ReadFileResponse = {
+  id: string;
+  name: string;
+  length: string;
+  size: number;
+  fileType: number;
+  tags: string[];
+  hash: {
+    md5: string;
+    sha256: string;
+    concatHash: string;
+  }
+};
+
+export type UpdateFileRequest = {
+  fileType: string;
+  tags: string[];
+}
+
+export type UpdateFileRequestDTO = {
+  file_type: string;
+  tags: string[];
+}

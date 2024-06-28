@@ -2,14 +2,14 @@
 import { Spinner } from "@nextui-org/spinner";
 import { useEffect, useState } from "react";
 import {
+  Button,
+  Pagination,
   Table,
   TableBody,
+  TableCell,
+  TableColumn,
   TableHeader,
   TableRow,
-  TableColumn,
-  TableCell,
-  Pagination,
-  Button,
 } from "@nextui-org/react";
 import Link from "next/link";
 
@@ -28,7 +28,7 @@ export default function Files() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [limit, setLimit] = useState<number>(10);
   const [page, setPage] = useState<number>(1);
-  const [data, setData] = useState<FilesListResponse | null>(null);
+  const [data, setData] = useState<FilesListResponse | undefined>(undefined);
   const [error, setError] = useState<string>("");
   const [search, setSearch] = useState<string>("");
   const [type, setType] = useState<string>("");
@@ -56,8 +56,7 @@ export default function Files() {
 
       setData(res);
       setError("");
-    } catch (error) {
-      console.error("Fetch error:", error);
+    } catch (error: any) {
       setError("Failed to fetch data");
     }
     setIsLoading(false);
@@ -82,10 +81,6 @@ export default function Files() {
 
   if (isLoading) {
     return <Spinner label="Загрузка..." />;
-  }
-
-  if (error) {
-    return <div>{error}</div>;
   }
 
   return (
@@ -151,7 +146,11 @@ export default function Files() {
             {data?.results?.length ? (
               data.results.map((item) => (
                 <TableRow key={item.id} className="text-center">
-                  <TableCell>{item.name}</TableCell>
+                  <TableCell>
+                    <Link href={`/files/${item.id}`} target="_blank">
+                      {item.name}
+                    </Link>
+                  </TableCell>
                   <TableCell>{item.length}</TableCell>
                   <TableCell>{checkSize(item.size)}</TableCell>
                   <TableCell>{convertType(item.fileType)}</TableCell>

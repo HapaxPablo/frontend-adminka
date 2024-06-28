@@ -3,12 +3,12 @@
 import { useEffect, useState } from "react";
 import { Button, Select, Skeleton, Typography, Input } from "antd/lib";
 import Link from "next/link";
+import { Chip } from "@nextui-org/react";
 
 import styles from "./Nomenclature.module.scss";
 
 import { NomenclaturesService } from "@/services/nomenclatures/nomenclatures.service";
 import { NomenclatureListResponseInterface } from "@/types/interface/nomenclature.interface";
-import { Chip } from "@nextui-org/react";
 
 const { Search } = Input;
 
@@ -186,53 +186,52 @@ export default function Nomenclatures() {
             </div>
           </div>
           <div style={{ display: "flex", flexDirection: "column" }}>
-            <div className={styles.container_menu_table}>
-              <div className={styles.container_menu_table_row}>
-                <div className={styles.container_menu_table_item}>
-                  Наименование
-                </div>
-                <div className={styles.container_menu_table_item}>
-                  Часовой пояс
-                </div>
-                <div className={styles.container_menu_table_item}>
-                  Последнее время ответа
-                </div>
-                <div className={styles.container_menu_table_item}>Версия</div>
-              </div>
-              {results?.map((el) => (
-                <div
-                  key={el.id}
-                  className={styles.container_menu_table_row_color}
-                  style={{ borderColor: getBorderColor(el.status) }}
-                >
-                  <div className={styles.container_menu_table_item}>
-                    <Link
-                      href={`/nomenclatures/${el.id}`}
-                      // rel="noopener noreferrer"
-                      target="_blank"
-                    >
-                      {el.name}
-                    </Link>
-                  </div>
-                  <div className={styles.container_menu_table_item}>
-                    {el.timezone}
-                  </div>
-                  <div className={styles.container_menu_table_item}>
-                    {el.last_answer}
-                  </div>
-                  <div className={styles.container_menu_table_item}>
-                    {el.version}
-                  </div>
-                </div>
-              ))}
-              <div className={styles.container_menu_table_buttons}>
-                <Button disabled={!nomenclatures?.previous} onClick={prevPage}>
-                  Prev
-                </Button>
-                <Button disabled={!nomenclatures?.next} onClick={nextPage}>
-                  Next
-                </Button>
-              </div>
+            {/*<div className={styles.container_menu_table}>*/}
+            {/*  <div className={styles.container_menu_table_row}>*/}
+            {/*    <div className={styles.container_menu_table_item}>*/}
+            {/*      Наименование*/}
+            {/*    </div>*/}
+            {/*    <div className={styles.container_menu_table_item}>*/}
+            {/*      Часовой пояс*/}
+            {/*    </div>*/}
+            {/*    <div className={styles.container_menu_table_item}>*/}
+            {/*      Последнее время ответа*/}
+            {/*    </div>*/}
+            {/*    <div className={styles.container_menu_table_item}>Версия</div>*/}
+            {/*  </div>*/}
+            {/*  {results?.map((el) => (*/}
+            {/*    <div*/}
+            {/*      key={el.id}*/}
+            {/*      className={styles.container_menu_table_row_color}*/}
+            {/*      style={{ borderColor: getBorderColor(el.status) }}*/}
+            {/*    >*/}
+            {/*      <div className={styles.container_menu_table_item}>*/}
+            {/*        <Link*/}
+            {/*          href={`/nomenclatures/${el.id}`}*/}
+            {/*          // rel="noopener noreferrer"*/}
+            {/*          target="_blank"*/}
+            {/*        >*/}
+            {/*          {el.name}*/}
+            {/*        </Link>*/}
+            {/*      </div>*/}
+            {/*      <div className={styles.container_menu_table_item}>*/}
+            {/*        {el.timezone}*/}
+            {/*      </div>*/}
+            {/*      <div className={styles.container_menu_table_item}>*/}
+            {/*        {el.last_answer}*/}
+            {/*      </div>*/}
+            {/*      <div className={styles.container_menu_table_item}>*/}
+            {/*        {el.version}*/}
+            {/*      </div>*/}
+            {/*    </div>*/}
+            {/*  ))}*/}
+            <div className={styles.container_menu_table_buttons}>
+              <Button disabled={!nomenclatures?.previous} onClick={prevPage}>
+                Prev
+              </Button>
+              <Button disabled={!nomenclatures?.next} onClick={nextPage}>
+                Next
+              </Button>
             </div>
           </div>
         </div>

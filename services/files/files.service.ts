@@ -1,19 +1,21 @@
 import { API_URL } from "@/config/api.config";
 import {
-  FilesCreateRequest,
-  FilesCreateRequestDTO,
   FilesCreateResponse,
-  FilesCreateResponseDTO,
   FilesListResponse,
   FilesListResponseDTO,
+  ReadFileResponse,
+  ReadFileResponseDTO,
   TagsCreateRequest,
   TagsCreateResponse,
+  UpdateFileRequest,
 } from "@/types/interface/files.interface";
 import {
-  filesCreateRequestTransformer,
   filesCreateResponseTransformer,
   filesListResponseTransformer,
+  readFileResponseTransformer,
 } from "@/types/transformers/files.transformer";
+import { toastError } from "@/utils/toast-error";
+import { toastSuccess } from "@/utils/toast-success";
 
 interface Pagination {
   page?: number;
@@ -21,6 +23,19 @@ interface Pagination {
   name?: string;
   file_type?: string;
 }
+
+const fetchWithTimeout = async (
+  url: RequestInfo | URL,
+  options: RequestInit | undefined,
+  timeout = 5000,
+) => {
+  return Promise.race([
+    fetch(url, options),
+    new Promise((_, reject) =>
+      setTimeout(() => reject(new Error("Request timed out")), timeout),
+    ),
+  ]) as unknown as Response;
+};
 
 export const FilesService = {
   async getAll({
@@ -43,7 +58,8 @@ export const FilesService = {
     if (file_type !== undefined) {
       url += `&file_type=${file_type}`;
     }
-    const response = await fetch(url, {
+
+    const response = await fetchWithTimeout(url, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -53,86 +69,136 @@ export const FilesService = {
     if (response.ok) {
       const data: FilesListResponseDTO = await response.json();
 
-      console.log("response:", data);
-      console.log("transf data:", filesListResponseTransformer(data));
-
       return filesListResponseTransformer(data);
     } else {
       throw new Error("Не удалось получить список файлов");
     }
   },
+
   async createFiles(
-    fileData: FilesCreateRequest,
-    token: string,
+    fileData: { file_type: number; source: string; tags: number[] },
+    token: string | undefined,
   ): Promise<FilesCreateResponse> {
     const url = `${API_URL}/api/files/`;
-    const body: FilesCreateRequestDTO = filesCreateRequestTransformer(fileData);
 
-    const response = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `access_token ${token}`,
-      },
-      body: JSON.stringify(body),
-    });
+    const payload = {
+      ...fileData,
+      file_type: Number(fileData.file_type),
+    };
 
-    if (response.ok) {
-      const data: FilesCreateResponseDTO = await response.json();
+    try {
+      const response = await fetchWithTimeout(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `access_token ${token}`,
+        },
+        body: JSON.stringify(payload),
+      });
 
-      return filesCreateResponseTransformer(data);
-    } else {
-      throw new Error("Не удалось создать файл");
+      if (response.ok) {
+        const data = await response.json();
+
+        toastSuccess("Файл успешно создан");
+
+        return filesCreateResponseTransformer(data);
+      } else {
+        const errorData = await response.json();
+
+        throw new Error(
+          `Не удалось создать файл: ${errorData.detail || response.statusText}`,
+        );
+      }
+    } catch (error) {
+      toastError(error);
+      throw error;
     }
   },
 
   async createTags(
     tagsData: TagsCreateRequest,
-    token: string,
+    token: string | undefined,
   ): Promise<TagsCreateResponse> {
     const url = `${API_URL}/api/tags/`;
     const body = JSON.stringify(tagsData);
 
-    console.log(body);
+    try {
+      const response = await fetchWithTimeout(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `access_token ${token}`,
+        },
+        body: body,
+      });
 
-    const response = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `access_token ${token}`,
-      },
-      body: body,
-    });
+      if (response.ok) {
+        const data: TagsCreateResponse = await response.json();
 
-    if (response.ok) {
-      const data: TagsCreateResponse = await response.json();
+        toastSuccess("Тег успешно создан");
 
-      return data;
-    } else {
-      throw new Error(
-        `${(response.status, response.statusText)}`,
-      );
+        return data;
+      } else {
+        throw new Error(`${(response.status, response.statusText)}`);
+      }
+    } catch (error) {
+      toastError(error);
+      throw error;
+    }
+  },
+
+  async getById(
+    id: string | string[],
+    token: string | undefined,
+  ): Promise<ReadFileResponse> {
+    const url = `${API_URL}/api/files/${id}`;
+
+    try {
+      const response = await fetchWithTimeout(url, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `access_token ${token}`,
+        },
+      });
+
+      if (response.ok) {
+        const data: ReadFileResponseDTO = await response.json();
+
+        console.log(readFileResponseTransformer(data));
+
+        return readFileResponseTransformer(data);
+      } else {
+        throw new Error(`Не удалось получить файл: ${response.statusText}`);
+      }
+    } catch (error) {
+      toastError(error);
+      throw error;
+    }
+  },
+
+  async update(id: string, data: UpdateFileRequest, token: string | undefined): Promise<any> {
+    const url = `${API_URL}/api/files/${id}`;
+    const body = JSON.stringify(data);
+
+    try {
+      const response = await fetchWithTimeout(url, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `access_token ${token}`,
+        },
+        body: body,
+      });
+
+      if (response.ok) {
+        toastSuccess("Файл успешно обновлен");
+      } else {
+        throw new Error(`Не удалось обновить файл: ${response.statusText}`);
+      }
+    } catch (error) {
+      toastError(error);
+      throw error;
     }
   },
 };
-// async createFiles(fileData: FilesCreateRequest): Promise<FilesCreateResponse> {
-//   const url = `${API_URL}/api/files/`;
-
-//   const formData = new FormData();
-//   formData.append("name", fileData.name);
-//   formData.append("fileType", fileData.fileType.toString());
-//   formData.append("tags", JSON.stringify(fileData.tags));
-//   formData.append("file", fileData.file);
-
-//   const response = await fetch(url, {
-//     method: "POST",
-//     body: formData,
-//   });
-
-//   if (response.ok) {
-//     const data: FilesCreateResponseDTO = await response.json();
-//     return filesCreateResponseTransformer(data);
-//   } else {
-//     throw new Error("Не удалось создать файл");
-//   }
-// }
