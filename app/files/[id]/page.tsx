@@ -3,6 +3,7 @@
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import {
+  Button,
   Card,
   CardBody,
   CardFooter,
@@ -12,7 +13,6 @@ import {
   Spinner,
 } from "@nextui-org/react";
 
-import { Button } from "@/stories/Button";
 import { ReadFileResponse } from "@/types/interface/files.interface";
 import { getTokenStorage } from "@/services/auth/auth.helper";
 import { FilesService } from "@/services/files/files.service";
@@ -109,7 +109,7 @@ export default function ReadFile() {
               />
             </CardFooter>
           </Card>
-          <Button label="Edit" />
+          <Button title="Edit" />
         </div>
       )}
     </>

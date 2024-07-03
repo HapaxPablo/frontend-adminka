@@ -1,7 +1,7 @@
 import Cookies from "js-cookie";
 
-import { ITokens } from "@/src/types/interface/user.interface";
-import { IAuthResponse } from "@/src/store/user/user.interface";
+import { IAuthResponse } from "@/store/user/user.interface";
+import { ITokens } from "@/types/interface/user.interface";
 
 export const saveTokensStorage = (data: ITokens) => {
   Cookies.set("accessToken", data.access);

@@ -6,9 +6,7 @@
     "dev": "next dev -H 192.168.0.94 -p 3000",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint . --ext .ts,.tsx -c .eslintrc.json --fix",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "lint": "eslint . --ext .ts,.tsx -c .eslintrc.json --fix"
   },
   "dependencies": {
     "@nextui-org/button": "^2.0.32",
@@ -66,18 +64,9 @@
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^1.5.0",
-    "@storybook/addon-essentials": "^8.1.5",
-    "@storybook/addon-interactions": "^8.1.5",
-    "@storybook/addon-links": "^8.1.5",
-    "@storybook/addon-onboarding": "^8.1.5",
-    "@storybook/blocks": "^8.1.5",
-    "@storybook/nextjs": "^8.1.5",
-    "@storybook/react": "^8.1.5",
-    "@storybook/test": "^8.1.5",
     "@types/js-cookie": "^3.0.6",
     "@types/react-modal": "^3.16.3",
     "@types/react-redux-toastr": "^8.0.0",
-    "eslint-plugin-storybook": "^0.8.0",
-    "storybook": "^8.1.5"
+    "eslint-plugin-storybook": "^0.8.0"
   }
 }
