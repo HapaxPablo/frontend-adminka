@@ -51,7 +51,7 @@ export const NomenclaturesService = {
     if (response.ok) {
       return response.json();
     } else {
-      throw new Error("Не удалось получить номенклатуру");
+      throw new Error(`Не удалось получить список номенклатур`);
     }
   },
 

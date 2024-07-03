@@ -4,12 +4,8 @@ import React, { useState } from "react";
 import { Button, Form, Input, Select } from "antd";
 
 import styles from "./NomenclatureCreate.module.scss";
-
-import {
-  NomenclatureCreateInterface,
-  SettingsInterface,
-} from "@/shared/interface/nomenclature.interface";
-import { timezonesArray } from "@/shared/types/timezone";
+import { NomenclatureCreateInterface, SettingsInterface } from "@/types/interface/nomenclature.interface";
+import { timezonesArray } from "@/types/types/timezone";
 
 const { Option } = Select;
 
@@ -94,7 +90,7 @@ const NomenclatureCreate: React.FC<NomenclatureCreateProps> = ({ data }) => {
             ))}
           </Select>
         </Form.Item>
-        <label>Настройки:</label>
+        Настройки:
         {Object.keys(formData.settings).map((day: keyof SettingsInterface) => (
           <div key={day}>
             <label>{day}:</label>
