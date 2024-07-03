@@ -4,8 +4,8 @@ import { toastr } from "react-redux-toastr";
 import { IAuthResponse, IEmailPassword, ITokens } from "./user.interface";
 
 import { AuthService } from "@/services/auth/auth.service";
-import { toastError } from "@/utils/toast-error";
 import { IAuthInput } from "@/types/interface/user.interface";
+import { toastError } from "@/utils/toast-error";
 
 // export const register = createAsyncThunk<IAuthResponse, IEmailPassword>(
 //   "auth/register",

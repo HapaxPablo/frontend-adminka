@@ -6,7 +6,7 @@ import { Button } from "antd/lib";
 
 import styles from "./Login.module.scss";
 
-import { AuthService } from "@/services/auth/auth.service";
+import { AuthService } from "@/src/services/auth/auth.service";
 
 export default function LoginPage() {
   const [email, setEmail] = useState<string>("");
