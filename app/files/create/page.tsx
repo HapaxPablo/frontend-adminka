@@ -1,16 +1,18 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import { Select, SelectItem } from "@nextui-org/select";
 import { Input } from "@nextui-org/input";
 import { Button } from "@nextui-org/button";
 
-import { FilesService } from "@/src/services/files/files.service";
-import { getTokenStorage } from "@/src/services/auth/auth.helper";
-import { FilesCreateRequestDTO } from "@/src/types/interface/files.interface";
-import { fileTypes } from "@/src/types/types/fileTypes";
-import { TagsService } from "@/src/services/tags/tags.service";
-import { TagResponse } from "@/src/types/interface/tags.interface";
+import { TagResponse } from "@/types/interface/tags.interface";
+import { TagsService } from "@/services/tags/tags.service";
+import { toastError } from "@/utils/toast-error";
+import { getTokenStorage } from "@/services/auth/auth.helper";
+import { FilesCreateRequestDTO } from "@/types/interface/files.interface";
+import { FilesService } from "@/services/files/files.service";
+import { toastSuccess } from "@/utils/toast-success";
+import { fileTypes } from "@/types/types/fileTypes";
 
 export default function FilesCreate() {
   // const [name, setName] = useState("");
@@ -32,7 +34,7 @@ export default function FilesCreate() {
 
       setTags(res.results);
     } catch (error) {
-      console.error("Fetch error:", error);
+      toastError(error);
     }
   };
 
@@ -89,25 +91,26 @@ export default function FilesCreate() {
         // name,
         file_type: Number(fileType),
         source: file,
-        tags: selectedTagIds
+        tags: selectedTagIds,
       };
 
       const response = await FilesService.createFiles(fileData, token);
 
-      console.log("File created successfully:", response);
+      toastSuccess("File created successfully");
       setSelectedTagIds([]);
       setFile(null);
       setError(null);
-    } catch (error: any) {
-      console.error("Error creating file:", error);
-      setError("Не удалось создать файл");
+    } catch (error) {
+      toastError(error);
     }
   };
 
-  const handleTagChange = (selectedKeys: Set<string>) => {
-    const selectedIds = Array.from(selectedKeys).map(Number);
+  const handleTagChange = (event: ChangeEvent<HTMLSelectElement>) => {
+    const selectedKeys = new Set(
+      Array.from(event.target.selectedOptions, (option) => option.value),
+    );
 
-    setSelectedTagIds(selectedIds);
+    setSelectedTagIds(Array.from(selectedKeys).map(Number));
   };
 
   const handleTypeChange = (type: string) => {
@@ -175,7 +178,7 @@ export default function FilesCreate() {
             placeholder="Выберите файл"
             type="file"
             onChange={handleFileChange}
-            />
+          />
           {/* </Button> */}
         </div>
         <Button color="secondary" type="submit">
