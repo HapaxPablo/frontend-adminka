@@ -1,13 +1,10 @@
 "use client";
 
 import React, { useState } from "react";
-import { Button, Form, Input, Select } from "antd";
 
 import styles from "./NomenclatureCreate.module.scss";
-import { NomenclatureCreateInterface, SettingsInterface } from "@/types/interface/nomenclature.interface";
-import { timezonesArray } from "@/types/types/timezone";
 
-const { Option } = Select;
+import { NomenclatureCreateInterface } from "@/types/interface/nomenclature.interface";
 
 interface NomenclatureCreateProps {
   data: NomenclatureCreateInterface;
@@ -61,7 +58,8 @@ const NomenclatureCreate: React.FC<NomenclatureCreateProps> = ({ data }) => {
 
   return (
     <div className={styles.container}>
-      <Form className={styles.form} layout="vertical" onFinish={handleSubmit}>
+      надо переписать
+      {/* <Form className={styles.form} layout="vertical" onFinish={handleSubmit}>
         <Form.Item label="Название" name="name">
           <Input
             name="name"
@@ -94,7 +92,7 @@ const NomenclatureCreate: React.FC<NomenclatureCreateProps> = ({ data }) => {
         {Object.keys(formData.settings).map((day: keyof SettingsInterface) => (
           <div key={day}>
             <label>{day}:</label>
-            {/* <Input
+            <Input
                             value={formData.settings[day]?.worktime || ''}
                             onChange={(e) => handleSettingChange(day, 'worktime', e.target.value)}
                             style={{ marginBottom: '8px' }}
@@ -105,14 +103,14 @@ const NomenclatureCreate: React.FC<NomenclatureCreateProps> = ({ data }) => {
                             onChange={(e) => handleSettingChange(day, 'default_volume', e.target.value)}
                             style={{ marginBottom: '8px' }}
                             placeholder="Default Volume"
-                        /> */}
+                        />
           </div>
         ))}
 
         <Button htmlType="submit" type="primary">
           Сохранить
         </Button>
-      </Form>
+      </Form> */}
     </div>
   );
 };
