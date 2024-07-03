@@ -4,8 +4,8 @@ import React from "react";
 
 type SearchProps = {
   searchValue: string;
-  onSearchChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  onSearchSubmit: () => void;
+  onSearchChange: any;
+  onSearchSubmit: any;
   label: string;
   placeholder: string;
 };

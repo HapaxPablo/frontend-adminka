@@ -28,11 +28,9 @@ export default function ReadFile() {
   const id = router.id;
 
   useEffect(() => {
-    fetchFiles().catch((error) => {
-      setError("Failed to fetch data");
-      console.error("Error fetching data:", error);
-    });
+    fetchFiles();
   }, []);
+
   const fetchFiles = async () => {
     setIsLoading(true);
     try {
@@ -46,9 +44,9 @@ export default function ReadFile() {
     setIsLoading(false);
   };
 
-  if (!data) {
-    return <div>{error}</div>;
-  }
+  // if (!data) {
+  //   return <div>{error}</div>;
+  // }
 
   return (
     <>
