@@ -142,8 +142,8 @@ export default function Files() {
             isLoading={isLoading}
             loadingContent={<Spinner label="Загрузка..." />}
           >
-            {data?.results?.length ? (
-              data.results.map((item) => (
+            <>
+              {data?.results.map((item) => (
                 <TableRow key={item.id} className="text-center">
                   <TableCell>
                     <Link href={`/files/${item.id}`} target="_blank">
@@ -155,14 +155,8 @@ export default function Files() {
                   <TableCell>{convertType(item.fileType)}</TableCell>
                   <TableCell>{item.tags?.join(", ")}</TableCell>
                 </TableRow>
-              ))
-            ) : (
-              <TableRow>
-                <TableCell className="text-center" colSpan={5}>
-                  No data available
-                </TableCell>
-              </TableRow>
-            )}
+              ))}
+            </>
           </TableBody>
         </Table>
       </div>
