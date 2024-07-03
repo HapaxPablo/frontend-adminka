@@ -5,12 +5,12 @@ import { Select, SelectItem } from "@nextui-org/select";
 import { Input } from "@nextui-org/input";
 import { Button } from "@nextui-org/button";
 
-import { FilesService } from "@/services/files/files.service";
-import { getTokenStorage } from "@/services/auth/auth.helper";
-import { FilesCreateRequestDTO } from "@/types/interface/files.interface";
-import { fileTypes } from "@/types/types/fileTypes";
-import { TagsService } from "@/services/tags/tags.service";
-import { TagResponse } from "@/types/interface/tags.interface";
+import { FilesService } from "@/src/services/files/files.service";
+import { getTokenStorage } from "@/src/services/auth/auth.helper";
+import { FilesCreateRequestDTO } from "@/src/types/interface/files.interface";
+import { fileTypes } from "@/src/types/types/fileTypes";
+import { TagsService } from "@/src/services/tags/tags.service";
+import { TagResponse } from "@/src/types/interface/tags.interface";
 
 export default function FilesCreate() {
   // const [name, setName] = useState("");

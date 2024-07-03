@@ -12,12 +12,12 @@ import {
   Spinner,
 } from "@nextui-org/react";
 
+import { Button } from "@/stories/Button";
+import { ReadFileResponse } from "@/types/interface/files.interface";
 import { getTokenStorage } from "@/services/auth/auth.helper";
 import { FilesService } from "@/services/files/files.service";
-import { ReadFileResponse } from "@/types/interface/files.interface";
 import { checkSize } from "@/types/types/checkSize";
 import { convertType } from "@/types/types/fileTypes";
-import { Button } from "@/stories/Button";
 
 export default function ReadFile() {
   const [isLoading, setIsLoading] = useState(true);

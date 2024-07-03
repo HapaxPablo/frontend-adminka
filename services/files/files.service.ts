@@ -16,7 +16,6 @@ import {
 } from "@/types/transformers/files.transformer";
 import { toastError } from "@/utils/toast-error";
 import { toastSuccess } from "@/utils/toast-success";
-
 interface Pagination {
   page?: number;
   limit?: number;
@@ -165,8 +164,6 @@ export const FilesService = {
       if (response.ok) {
         const data: ReadFileResponseDTO = await response.json();
 
-        console.log(readFileResponseTransformer(data));
-
         return readFileResponseTransformer(data);
       } else {
         throw new Error(`Не удалось получить файл: ${response.statusText}`);
@@ -177,7 +174,11 @@ export const FilesService = {
     }
   },
 
-  async update(id: string, data: UpdateFileRequest, token: string | undefined): Promise<any> {
+  async update(
+    id: string,
+    data: UpdateFileRequest,
+    token: string | undefined,
+  ): Promise<any> {
     const url = `${API_URL}/api/files/${id}`;
     const body = JSON.stringify(data);
 

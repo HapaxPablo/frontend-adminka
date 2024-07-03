@@ -5,8 +5,6 @@ import { Select, SelectItem } from "@nextui-org/react";
 import { fileTypes } from "@/types/types/fileTypes";
 
 const FileType = ({ setFileType, type }) => {
-  console.log(fileTypes);
-
   const handleChange = (value) => {
     if (value === "all") {
       setFileType(""); // Сбросить фильтр
@@ -23,9 +21,9 @@ const FileType = ({ setFileType, type }) => {
 
   return (
     <Select
+      defaultSelectedKeys={[`${type}`]}
       label="Выберите тип файла"
       onChange={(e) => handleChange(e.target.value)}
-      defaultSelectedKeys={[`${type}`]}
     >
       {fileTypes.map((option) => (
         <SelectItem key={option.key} value={option.key}>

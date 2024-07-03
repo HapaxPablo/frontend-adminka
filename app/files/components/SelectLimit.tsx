@@ -19,11 +19,11 @@ const SelectLimit = ({ label, placeholder, limitValue, setLimitValue }) => {
 
   return (
     <Select
+      defaultSelectedKeys={[`${limitValue}`]}
       label={label}
       placeholder={placeholder}
       value={limitValue.toString()} // Ensure default value is a string
       onChange={(e) => handleChange(e.target.value)}
-      defaultSelectedKeys={[`${limitValue}`]}
     >
       {limitPages.map((option) => (
         <SelectItem key={option.key} value={option.key}>

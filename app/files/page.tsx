@@ -23,7 +23,6 @@ import { FilesListResponse } from "@/types/interface/files.interface";
 import { FilesService } from "@/services/files/files.service";
 import { checkSize } from "@/types/types/checkSize";
 import { convertType } from "@/types/types/fileTypes";
-
 export default function Files() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [limit, setLimit] = useState<number>(10);
