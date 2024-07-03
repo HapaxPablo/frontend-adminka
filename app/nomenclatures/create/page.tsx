@@ -10,7 +10,7 @@ interface NomenclatureCreateProps {
   data: NomenclatureCreateInterface;
 }
 
-const NomenclatureCreate: React.FC<NomenclatureCreateProps> = ({ data }) => {
+export default function NomenclatureCreate({ data }: NomenclatureCreateProps) {
   const [formData, setFormData] = useState<NomenclatureCreateInterface>({
     name: data?.name || "",
     description: data?.description || "",
@@ -114,5 +114,3 @@ const NomenclatureCreate: React.FC<NomenclatureCreateProps> = ({ data }) => {
     </div>
   );
 };
-
-export default NomenclatureCreate;
