@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 
 import styles from "./NomenclatureCreate.module.scss";
 
@@ -10,29 +10,29 @@ interface NomenclatureCreateProps {
   data: NomenclatureCreateInterface;
 }
 
-export default function NomenclatureCreate({ data }: NomenclatureCreateProps) {
-  const [formData, setFormData] = useState<NomenclatureCreateInterface>({
-    name: data?.name || "",
-    description: data?.description || "",
-    timezone: data?.timezone || "",
-    settings: {}, // Начальные настройки пусты
-  });
+export default function NomenclatureCreate() {
+  // const [formData, setFormData] = useState<NomenclatureCreateInterface>({
+  //   name: data?.name || "",
+  //   description: data?.description || "",
+  //   timezone: data?.timezone || "",
+  //   settings: {}, // Начальные настройки пусты
+  // });
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
+  // const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   const { name, value } = event.target;
 
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
+  //   setFormData((prevData) => ({
+  //     ...prevData,
+  //     [name]: value,
+  //   }));
+  // };
 
-  const handleTimeZoneChange = (value: string) => {
-    setFormData((prevData) => ({
-      ...prevData,
-      timezone: value,
-    }));
-  };
+  // const handleTimeZoneChange = (value: string) => {
+  //   setFormData((prevData) => ({
+  //     ...prevData,
+  //     timezone: value,
+  //   }));
+  // };
 
   // const handleSettingChange = (day: Day, setting: keyof SettingsInterface, value: string) => {
   //     setFormData(prevData => {
@@ -51,10 +51,10 @@ export default function NomenclatureCreate({ data }: NomenclatureCreateProps) {
   //     });
   // };
 
-  const handleSubmit = () => {
-    // Ваша логика сохранения данных
-    console.log("Form Data:", formData);
-  };
+  // const handleSubmit = () => {
+  //   // Ваша логика сохранения данных
+  //   console.log("Form Data:", formData);
+  // };
 
   return (
     <div className={styles.container}>
@@ -113,4 +113,4 @@ export default function NomenclatureCreate({ data }: NomenclatureCreateProps) {
       </Form> */}
     </div>
   );
-};
+}

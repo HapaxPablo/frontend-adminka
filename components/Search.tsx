@@ -2,13 +2,16 @@
 import { Input } from "@nextui-org/react";
 import React from "react";
 
-const Search = ({
-  searchValue,
-  onSearchChange,
-  onSearchSubmit,
-  label,
-  placeholder,
-}) => {
+type SearchProps = {
+  searchValue: string;
+  onSearchChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onSearchSubmit: () => void;
+  label: string;
+  placeholder: string;
+};
+
+const Search = (props: SearchProps) => {
+  const { searchValue, onSearchChange, onSearchSubmit, label, placeholder } = props;
   const handleKeyDown = (event: { key: string }) => {
     if (event.key === "Enter") {
       onSearchSubmit();

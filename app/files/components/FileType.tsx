@@ -4,8 +4,14 @@ import { Select, SelectItem } from "@nextui-org/react";
 
 import { fileTypes } from "@/types/types/fileTypes";
 
-const FileType = ({ setFileType, type }) => {
-  const handleChange = (value) => {
+type FileType = {
+  setFileType: any;
+  type: string;
+};
+
+const FileType = (props: FileType) => {
+  const { setFileType, type } = props;
+  const handleChange = (value: string) => {
     if (value === "all") {
       setFileType(""); // Сбросить фильтр
     } else {

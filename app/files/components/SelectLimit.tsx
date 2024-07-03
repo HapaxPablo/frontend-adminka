@@ -5,8 +5,16 @@ import React from "react";
 
 import { limitPages } from "@/types/types/limitPages";
 
-const SelectLimit = ({ label, placeholder, limitValue, setLimitValue }) => {
-  const handleChange = (value) => {
+type SelectLimitProps = {
+  label: string;
+  placeholder: string;
+  limitValue: number;
+  setLimitValue: any;
+};
+
+const SelectLimit = (props: SelectLimitProps) => {
+  const { label, placeholder, limitValue, setLimitValue } = props;
+  const handleChange = (value: string) => {
     // Ensure the value is parsed to a number before setting it
     const parsedValue = Number(value);
 
