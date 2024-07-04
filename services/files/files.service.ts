@@ -1,4 +1,4 @@
-import { API_URL } from "@/config/api.config";
+import { API_URL } from "../../config/api.config";
 import {
   FilesCreateResponse,
   FilesListResponse,
@@ -8,14 +8,13 @@ import {
   TagsCreateRequest,
   TagsCreateResponse,
   UpdateFileRequest,
-} from "@/types/interface/files.interface";
+} from "../../types/interface/files.interface";
 import {
   filesCreateResponseTransformer,
   filesListResponseTransformer,
   readFileResponseTransformer,
-} from "@/types/transformers/files.transformer";
-import { toastError } from "@/utils/toast-error";
-import { toastSuccess } from "@/utils/toast-success";
+} from "../../types/transformers/files.transformer";
+import { getTokenStorage } from "../auth/auth.helper";
 interface Pagination {
   page?: number;
   limit?: number;
@@ -76,7 +75,7 @@ export const FilesService = {
 
   async createFiles(
     fileData: { file_type: number; source: string; tags: number[] },
-    token: string | undefined,
+    token: string | null,
   ): Promise<FilesCreateResponse> {
     const url = `${API_URL}/api/files/`;
 
@@ -98,7 +97,7 @@ export const FilesService = {
       if (response.ok) {
         const data = await response.json();
 
-        toastSuccess("Файл успешно создан");
+        // toastSuccess("Файл успешно создан");
 
         return filesCreateResponseTransformer(data);
       } else {
@@ -109,14 +108,14 @@ export const FilesService = {
         );
       }
     } catch (error) {
-      toastError(error);
+      // toastError(error);
       throw error;
     }
   },
 
   async createTags(
     tagsData: TagsCreateRequest,
-    token: string | undefined,
+    token: string | null,
   ): Promise<TagsCreateResponse> {
     const url = `${API_URL}/api/tags/`;
     const body = JSON.stringify(tagsData);
@@ -134,23 +133,22 @@ export const FilesService = {
       if (response.ok) {
         const data: TagsCreateResponse = await response.json();
 
-        toastSuccess("Тег успешно создан");
+        // toastSuccess("Тег успешно создан");
 
         return data;
       } else {
         throw new Error(`${(response.status, response.statusText)}`);
       }
     } catch (error) {
-      toastError(error);
+      // toastError(error);
       throw error;
     }
   },
 
-  async getById(
-    id: string | string[],
-    token: string | undefined,
-  ): Promise<ReadFileResponse> {
+  async getById(id: string | string[] | undefined): Promise<ReadFileResponse> {
     const url = `${API_URL}/api/files/${id}`;
+
+    const token = getTokenStorage();
 
     try {
       const response = await fetchWithTimeout(url, {
@@ -169,7 +167,6 @@ export const FilesService = {
         throw new Error(`Не удалось получить файл: ${response.statusText}`);
       }
     } catch (error) {
-      toastError(error);
       throw error;
     }
   },
@@ -193,12 +190,12 @@ export const FilesService = {
       });
 
       if (response.ok) {
-        toastSuccess("Файл успешно обновлен");
+        // toastSuccess("Файл успешно обновлен");
       } else {
         throw new Error(`Не удалось обновить файл: ${response.statusText}`);
       }
     } catch (error) {
-      toastError(error);
+      // toastError(error);
       throw error;
     }
   },
