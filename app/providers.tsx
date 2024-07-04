@@ -7,8 +7,8 @@ import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { ThemeProviderProps } from "next-themes/dist/types";
 import { Provider as ReduxProvider } from "react-redux";
 
-import ReduxToastrProvider from "@/providers/ReduxToast";
-import { store } from "@/store/store";
+import ReduxToastrProvider from "../providers/ReduxToast";
+import { store } from "../store/store";
 
 export interface ProvidersProps {
   children: React.ReactNode;

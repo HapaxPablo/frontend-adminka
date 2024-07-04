@@ -15,7 +15,10 @@ export const taskResponseTransformer = (
       owner: {
         fullName: task.owner.full_name,
       },
-      client: task.client,
+      client: {
+        name: task.client.name,
+        id: task.client.id,
+      },
       type: task.type,
       created: task.created,
       updated: task.updated,

@@ -1,6 +1,6 @@
 import { toastr } from "react-redux-toastr";
 
-import { handleResponse } from "@/api/api.helpers";
+import { handleResponse } from "../api/api.helpers";
 
 export const toastSuccess = (success: any, title?: string) => {
   const message =

@@ -8,7 +8,7 @@ export type TasksListResponseDTO = {
 export type TaskDTO = {
   id: string;
   owner: OwnerTaskDTO;
-  client: string;
+  client: ClientTaskDTO;
   type: number;
   created: string;
   updated: string;
@@ -25,17 +25,26 @@ export type TaskListResponse = {
 export type Task = {
   id: string;
   owner: OwnerTask;
-  client: string;
+  client: ClientTask;
   type: number;
   created: string;
   updated: string;
   status: number;
 };
 
-export type OwnerTaskDTO = {
-    full_name: string;
+type ClientTaskDTO = {
+  id: string;
+  name: string;
 }
 
-export type OwnerTask = {
+type ClientTask = {
+  id: string;
+  name: string;
+}
+
+type OwnerTaskDTO = {
+    full_name: string;
+}
+type OwnerTask = {
     fullName: string;
 }

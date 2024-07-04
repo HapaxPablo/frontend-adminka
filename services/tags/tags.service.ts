@@ -1,9 +1,9 @@
-import { API_URL } from "@/config/api.config";
+import { API_URL } from "../../config/api.config";
 import {
   TagsListResponse,
   TagsListResponseDTO,
-} from "@/types/interface/tags.interface";
-import { tagsListResponseTransformer } from "@/types/transformers/tags.trasformer";
+} from "../../types/interface/tags.interface";
+import { tagsListResponseTransformer } from "../../types/transformers/tags.trasformer";
 
 export const TagsService = {
   async gatAll(): Promise<TagsListResponse> {
