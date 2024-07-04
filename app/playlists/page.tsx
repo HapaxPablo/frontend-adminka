@@ -13,9 +13,9 @@ import { Pagination } from "@nextui-org/pagination";
 import Link from "next/link";
 import { Chip, Spinner } from "@nextui-org/react";
 
-import { toastError } from "@/utils/toast-error";
-import { PlaylistsListResponse } from "@/types/interface/playlists.interface";
-import { PlaylistsService } from "@/services/playlists/playlists.service";
+import { toastError } from "../../utils/toast-error";
+import { PlaylistsListResponse } from "../../types/interface/playlists.interface";
+import { PlaylistsService } from "../../services/playlists/playlists.service";
 
 export default function Playlists() {
   const [data, setData] = useState<PlaylistsListResponse | undefined>(

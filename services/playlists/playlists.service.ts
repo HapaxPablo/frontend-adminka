@@ -1,9 +1,9 @@
-import { API_URL } from "@/config/api.config";
+import { API_URL } from "../../config/api.config";
 import {
   PlaylistsListResponse,
   PlaylistsListResponseDTO,
-} from "@/types/interface/playlists.interface";
-import { playlistTransformer } from "@/types/transformers/playlists.transformer";
+} from "../../types/interface/playlists.interface";
+import { playlistTransformer } from "../../types/transformers/playlists.transformer";
 
 export const PlaylistsService = {
   async getAll(): Promise<PlaylistsListResponse> {
