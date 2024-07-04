@@ -27,10 +27,15 @@ export default function ReadFile() {
     try {
       const info = await getFileInfo(id);
 
+      console.log("File info fetched:", info);
+
       if (info) {
         setData(info);
+      } else {
+        console.error("No data found for ID:", id);
       }
     } catch (error) {
+      console.error("Error fetching file info:", error);
       toastError(error);
     }
   };
@@ -56,46 +61,46 @@ export default function ReadFile() {
         <CardBody className="flex items-center">
           <div className="flex flex-row items-center gap-1">
             <p className="text-md">Тэги</p>
-            <p className=" text-default-500">{data?.tags}</p>
+            <p className="text-default-500">{data?.tags}</p>
           </div>
           {data?.length && (
             <div className="flex flex-row items-center gap-1">
               <p className="text-md">Длина</p>
-              <p className=" text-default-500">{data?.length}</p>
+              <p className="text-default-500">{data?.length}</p>
             </div>
           )}
           <div className="flex flex-row items-center gap-1">
             <p className="text-md">Размер</p>
-            <p className=" text-default-500">{checkSize(data?.size)}</p>
+            <p className="text-default-500">{checkSize(data?.size)}</p>
           </div>
           <div className="flex flex-row items-center gap-1">
             <p className="text-md p-0 m-0">Тип</p>
-            <p className=" text-default-500 p-0 m-0">
+            <p className="text-default-500 p-0 m-0">
               {convertType(data?.fileType)}
             </p>
           </div>
           <Divider />
-          <div className="flex flex-col items-center gap-1 flex-wrap ">
+          <div className="flex flex-col items-center gap-1 flex-wrap">
             <p className="text-md p-0 m-0">Hash</p>
             <div className="flex flex-row items-center gap-1">
               <p className="text-md p-0 m-0">sha256:</p>
-              <p className=" text-default-500 p-0 m-0">{data?.hash.sha256}</p>
+              <p className="text-default-500 p-0 m-0">{data?.hash?.sha256}</p>
             </div>
             <div className="flex flex-row items-center gap-1">
               <p className="text-md p-0 m-0">md5:</p>
-              <p className=" text-default-500 p-0 m-0">{data?.hash.md5}</p>
+              <p className="text-default-500 p-0 m-0">{data?.hash?.md5}</p>
             </div>
             <div className="flex flex-row items-center gap-1">
               <p className="text-md p-0 m-0">concatHash:</p>
-              <p className=" text-default-500 p-0 m-0">
-                {data?.hash.concatHash}
+              <p className="text-default-500 p-0 m-0">
+                {data?.hash?.concatHash}
               </p>
             </div>
           </div>
         </CardBody>
         <Divider />
         <CardFooter className="flex justify-center flex-col gap-2">
-          <p className="text-md">заглущка</p>
+          <p className="text-md">Заглушка</p>
           <Image
             alt={`${data?.name}`}
             height={240}
@@ -112,6 +117,8 @@ export default function ReadFile() {
 
 async function getFileInfo(id: string | string[]) {
   const res = await FilesService.getById(id);
+
+  console.log("Fetching file info for ID:", id);
 
   return res;
 }
