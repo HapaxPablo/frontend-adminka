@@ -4,7 +4,7 @@ import React from "react";
 
 import styles from "./NomenclatureCreate.module.scss";
 
-import { NomenclatureCreateInterface } from "@/types/interface/nomenclature.interface";
+import { NomenclatureCreateInterface } from "../../../types/interface/nomenclature.interface";
 
 interface NomenclatureCreateProps {
   data: NomenclatureCreateInterface;

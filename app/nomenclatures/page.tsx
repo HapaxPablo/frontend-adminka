@@ -13,9 +13,9 @@ import { Pagination } from "@nextui-org/pagination";
 import { Chip, Spinner } from "@nextui-org/react";
 import Link from "next/link";
 
-import { NomenclaturesService } from "@/services/nomenclatures/nomenclatures.service";
-import { NomenclatureListResponseInterface } from "@/types/interface/nomenclature.interface";
-import { toastError } from "@/utils/toast-error";
+import { NomenclaturesService } from "../../services/nomenclatures/nomenclatures.service";
+import { NomenclatureListResponseInterface } from "../../types/interface/nomenclature.interface";
+import { toastError } from "../../utils/toast-error";
 
 export default function Nomenclatures() {
   const [data, setData] = useState<

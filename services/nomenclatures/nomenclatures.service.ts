@@ -1,5 +1,5 @@
-import { API_URL } from "@/config/api.config";
-import { NomenclatureListResponseInterface } from "@/types/interface/nomenclature.interface";
+import { API_URL } from "../../config/api.config";
+import { NomenclatureListResponseInterface } from "../../types/interface/nomenclature.interface";
 
 interface Pagination {
   page?: number;
