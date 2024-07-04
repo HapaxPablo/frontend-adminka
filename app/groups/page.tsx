@@ -14,9 +14,9 @@ import {
 } from "@nextui-org/react";
 import Link from "next/link";
 
-import { GroupsService } from "@/services/groups/groups.service";
-import { GroupsListResponse } from "@/types/interface/groups.interface";
-import { toastError } from "@/utils/toast-error";
+import { GroupsService } from "../../services/groups/groups.service";
+import { GroupsListResponse } from "../../types/interface/groups.interface";
+import { toastError } from "../../utils/toast-error";
 
 export default function PricingPage() {
   const [data, setData] = useState<GroupsListResponse | undefined>(undefined);

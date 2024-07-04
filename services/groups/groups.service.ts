@@ -1,9 +1,9 @@
-import { API_URL } from "@/config/api.config";
+import { API_URL } from "../../config/api.config";
 import {
   GroupsListResponse,
   GroupsListResponseDTO,
-} from "@/types/interface/groups.interface";
-import { groupsListResponseTransformer } from "@/types/transformers/groups.transformers";
+} from "../../types/interface/groups.interface";
+import { groupsListResponseTransformer } from "../../types/transformers/groups.transformers";
 
 interface Pagination {
   page?: number;
