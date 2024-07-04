@@ -2,8 +2,8 @@ import axios, { AxiosResponse } from "axios";
 
 import { removeTokensStorage, saveTokensStorage } from "./auth.helper";
 
-import { ITokens } from "@/types/interface/user.interface";
-import { API_URL } from "@/config/api.config";
+import { ITokens } from "../../types/interface/user.interface";
+import { API_URL } from "../../config/api.config";
 
 export const AuthService = {
   async login(
@@ -26,6 +26,8 @@ export const AuthService = {
     );
 
     if (response.data.access) {
+      console.log(JSON.stringify(response.data));
+
       saveTokensStorage(response.data);
     }
 

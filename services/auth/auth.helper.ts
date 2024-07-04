@@ -1,23 +1,26 @@
 import Cookies from "js-cookie";
 
-import { IAuthResponse } from "@/store/user/user.interface";
-import { ITokens } from "@/types/interface/user.interface";
+import { IAuthResponse } from "../../store/user/user.interface";
+import { ITokens } from "../../types/interface/user.interface";
 
 export const saveTokensStorage = (data: ITokens) => {
-  Cookies.set("accessToken", data.access);
-  Cookies.set("refreshToken", data.refresh);
+  localStorage.setItem("access", data.access);
+  Cookies.set("access", data.access);
+  localStorage.setItem("refresh", data.refresh);
+  Cookies.set("refresh", data.refresh);
 };
 
 export const saveToStorage = (data: IAuthResponse) => {
-  saveToStorage(data);
+  saveTokensStorage(data); // Изменено с saveToStorage на saveTokensStorage
   localStorage.setItem("user", JSON.stringify(data.user));
 };
 
 export const removeTokensStorage = () => {
-  Cookies.remove("accessToken");
-  Cookies.remove("refreshToken");
+  Cookies.remove("access");
+  Cookies.remove("refresh");
 };
 
 export const getTokenStorage = () => {
-  return Cookies.get("accessToken");
+  // console.log('3', localStorage.getItem("access"));
+  return localStorage.getItem("access");
 };

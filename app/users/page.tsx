@@ -13,9 +13,9 @@ import {
 } from "@nextui-org/react";
 import Link from "next/link";
 
-import { UsersListResponse } from "@/types/interface/user.interface";
-import { UsersService } from "@/services/users/users.service";
-import { toastError } from "@/utils/toast-error";
+import { UsersListResponse } from "../../types/interface/user.interface";
+import { UsersService } from "../../services/users/users.service";
+import { toastError } from "../../utils/toast-error";
 
 export default function DocsPage() {
   const [data, setData] = useState<UsersListResponse | undefined>(undefined);

@@ -2,10 +2,11 @@
 "use client";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import styles from "./Login.module.scss";
-import { AuthService } from "@/services/auth/auth.service";
 import { Button } from "@nextui-org/button";
 
+import styles from "./Login.module.scss";
+
+import { AuthService } from "../../services/auth/auth.service";
 
 export default function LoginPage() {
   const [email, setEmail] = useState<string>("");

@@ -1,9 +1,9 @@
-import { API_URL } from "@/config/api.config";
+import { API_URL } from "../../config/api.config";
 import {
   UsersListResponse,
   UsersListResponseDTO,
-} from "@/types/interface/user.interface";
-import { userResponseTransformer } from "@/types/transformers/users.transformers";
+} from "../../types/interface/user.interface";
+import { userResponseTransformer } from "../../types/transformers/users.transformers";
 
 export const UsersService = {
   async getAll(): Promise<UsersListResponse> {

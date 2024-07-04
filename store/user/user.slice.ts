@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { IIinitialState } from "./user.interface";
 import { login, logout } from "./user.actions";
 
-import { getStoreLocal } from "@/utils/local-storage";
+import { getStoreLocal } from "../../utils/local-storage";
 
 const initialState: IIinitialState = {
   isLoading: false,

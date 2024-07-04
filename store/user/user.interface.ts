@@ -1,4 +1,4 @@
-import { IAuthInput } from "@/types/interface/user.interface";
+import { IAuthInput } from "../../types/interface/user.interface";
 
 export interface IUserState {
   email: string;
