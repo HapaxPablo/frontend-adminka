@@ -1,6 +1,6 @@
 # Frontend проекта "Панель администратора RMC" <!-- omit in toc -->
 
-Проект сгенерирован с помощью [NextUI CLI](https://nextui.org/docs/guide/installation) версия NextJS 14.2.3. Так же внедряется [TanStack Query](https://tanstack.com/query/latest/docs/framework/react/overview) для более лучшего управления запросами, дополнительно сервисы переписываются с функций на классы.
+Проект сгенерирован с помощью [NextUI CLI](https://nextui.org/docs/guide/installation) версия NextJS 14.2.3. Так же внедряется [TanStack Query](https://tanstack.com/query/latest/docs/framework/react/overview) для более лучшего управления запросами, дополнительно сервисы переписываются с функций на классы. Для документации по бэку используется redoc.
 
 - [Основные консольные команды](#основные-консольные-команды)
 - [Разворачивание проекта](#разворачивание-проекта)
